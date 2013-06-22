@@ -1,0 +1,231 @@
+{
+    "bufferViews": {
+        "bufferView_18": {
+            "buffer": "Part3.bin",
+            "byteLength": 4128,
+            "byteOffset": 0,
+            "target": "ARRAY_BUFFER"
+        },
+        "bufferView_19": {
+            "buffer": "Part3.bin",
+            "byteLength": 984,
+            "byteOffset": 4128,
+            "target": "ELEMENT_ARRAY_BUFFER"
+        }
+    },
+    "buffers": {
+        "Part3.bin": {
+            "byteLength": 5112,
+            "path": "Part3.bin"
+        }
+    },
+    "materials": {
+        "material.0": {
+            "name": "Part3_mat",
+            "technique": "technique0",
+            "techniques": {
+                "technique0": {
+                    "parameters": {
+                        "ambient": {
+                            "type": "FLOAT_VEC3",
+                            "value": [
+                                0.2,
+                                0.2,
+                                0.2
+                            ]
+                        },
+                        "diffuse": {
+                            "type": "FLOAT_VEC3",
+                            "value": [
+                                0.823529,
+                                0.823529,
+                                1
+                            ]
+                        },
+                        "emission": {
+                            "type": "FLOAT_VEC3",
+                            "value": [
+                                0,
+                                0,
+                                0
+                            ]
+                        },
+                        "shininess": {
+                            "type": "FLOAT",
+                            "value": 15
+                        },
+                        "specular": {
+                            "type": "FLOAT_VEC3",
+                            "value": [
+                                0.46,
+                                0.46,
+                                0.46
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "meshes": {
+        "Part3_geom": {
+            "attributes": {
+                "attribute_14": {
+                    "bufferView": "bufferView_18",
+                    "byteOffset": 0,
+                    "byteStride": 12,
+                    "componentType": "FLOAT",
+                    "componentsPerAttribute": 3,
+                    "count": 172,
+                    "max": [
+                        22.3607,
+                        22.3607,
+                        80
+                    ],
+                    "min": [
+                        -22.3607,
+                        -22.3607,
+                        0
+                    ]
+                },
+                "attribute_16": {
+                    "bufferView": "bufferView_18",
+                    "byteOffset": 2064,
+                    "byteStride": 12,
+                    "componentType": "FLOAT",
+                    "componentsPerAttribute": 3,
+                    "count": 172,
+                    "max": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "min": [
+                        -1,
+                        -1,
+                        -0
+                    ]
+                }
+            },
+            "name": "Part3_geom",
+            "primitives": [
+                {
+                    "indices": {
+                        "bufferView": "bufferView_19",
+                        "byteOffset": 0,
+                        "count": 492,
+                        "type": "UNSIGNED_SHORT"
+                    },
+                    "material": "material.0",
+                    "primitive": "TRIANGLES",
+                    "semantics": {
+                        "NORMAL": "attribute_16",
+                        "POSITION": "attribute_14"
+                    }
+                }
+            ]
+        }
+    },
+    "nodes": {
+        "node_0": {
+            "children": [],
+            "matrix": [
+                1,
+                0,
+                0,
+                0,
+                0,
+                1,
+                0,
+                0,
+                0,
+                0,
+                1,
+                0,
+                0,
+                0,
+                0,
+                1
+            ],
+            "meshes": [
+                "Part3_geom"
+            ],
+            "name": "Part3"
+        },
+        "root": {
+            "children": [
+                "node_0"
+            ]
+        }
+    },
+    "profile": "WebGL 1.0",
+    "scene": "defaultScene",
+    "scenes": {
+        "defaultScene": {
+            "node": "root"
+        }
+    },
+    "shaders": {
+        "technique0Fs": {
+            "path": "technique0Fs.glsl"
+        },
+        "technique0Vs": {
+            "path": "technique0Vs.glsl"
+        }
+    },
+    "techniques": {
+        "technique0": {
+            "parameters": {},
+            "pass": "defaultPass",
+            "passes": {
+                "defaultPass": {
+                    "program": {
+                        "FRAGMENT_SHADER": "technique0Fs",
+                        "VERTEX_SHADER": "technique0Vs",
+                        "attributes": [
+                            {
+                                "semantic": "NORMAL",
+                                "symbol": "a_normal",
+                                "type": "FLOAT_VEC3"
+                            },
+                            {
+                                "semantic": "POSITION",
+                                "symbol": "a_position",
+                                "type": "FLOAT_VEC3"
+                            }
+                        ],
+                        "uniforms": [
+                            {
+                                "semantic": "WORLDVIEWINVERSETRANSPOSE",
+                                "symbol": "u_normalMatrix",
+                                "type": "FLOAT_MAT3"
+                            },
+                            {
+                                "parameter": "diffuse",
+                                "symbol": "u_diffuse",
+                                "type": "FLOAT_VEC3"
+                            },
+                            {
+                                "semantic": "WORLDVIEW",
+                                "symbol": "u_worldviewMatrix",
+                                "type": "FLOAT_MAT4"
+                            },
+                            {
+                                "semantic": "PROJECTION",
+                                "symbol": "u_projectionMatrix",
+                                "type": "FLOAT_MAT4"
+                            }
+                        ]
+                    },
+                    "states": {
+                        "blendEnable": false,
+                        "depthMask": true,
+                        "depthTestEnable": true
+                    },
+                    "type": "program"
+                }
+            }
+        }
+    },
+    "version": "0.2"
+}

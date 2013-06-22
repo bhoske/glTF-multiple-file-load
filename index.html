@@ -1,0 +1,36 @@
+<!doctype html>
+
+<html id="viewer">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Viewer</title>
+	<script> 
+	
+	//var my_str = window.location.search;
+	//var last_equal = my_str.lastIndexOf("=");
+	//var model_path = my_str.substring(last_equal+1,my_str.length);
+	var model_path = "model/Part3/Part3.json"
+	</script>
+    <script src="node_modules/runtime/dependencies/montage/montage.js"></script>
+    <script type="text/montage-serialization">
+    {
+            "theStage": {
+                "prototype": "ui/stage.reel",
+                "properties": {
+                    "element": {"#": "theStage"}
+                }
+            }
+    }
+    </script>
+
+    <style type="text/css">
+        .loading {
+            position: absolute;
+        }
+    </style>
+
+</head>
+<body>
+    <div data-montage-id="theStage"></div>
+</body>
+</html>

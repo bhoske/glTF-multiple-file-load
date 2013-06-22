@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<!-- <copyright>
+Copyright (c) 2012, Motorola Mobility LLC.
+All Rights Reserved.
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are met:
+
+* Redistributions of source code must retain the above copyright notice,
+  this list of conditions and the following disclaimer.
+
+* Redistributions in binary form must reproduce the above copyright notice,
+  this list of conditions and the following disclaimer in the documentation
+  and/or other materials provided with the distribution.
+
+* Neither the name of Motorola Mobility LLC nor the names of its
+  contributors may be used to endorse or promote products derived from this
+  software without specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+POSSIBILITY OF SUCH DAMAGE.
+</copyright> -->
+<html>
+<head>
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="options.css">
+    <script type="text/montage-serialization">
+    {
+        "owner": {
+            "prototype": "ui/options.reel",
+            "properties": {
+                "element": {"#": "options"}
+            }
+        },
+        
+        "progress": {
+            "prototype": "montage/ui/progress.reel",
+            "properties": {
+                "element": {"#": "progress"}
+            }
+        },
+        
+        "range": {
+            "prototype": "montage/ui/input-range.reel",
+            "properties": {
+                "element": {"#": "range"}
+            },
+            "bindings": {
+                "value": {
+                    "<->": "@number.value",
+                    "converter": {"@": "owner"}
+                }
+            }
+        },
+        
+        "number": {
+            "prototype": "montage/ui/input-number.reel",
+            "properties": {
+                "element": {"#": "number"},
+                "value" : 250
+            }
+        },
+        
+        "restart": {
+            "prototype": "montage/ui/button.reel",
+            "properties": {
+                "element": {"#": "restart"}
+            }
+        },
+        
+        "requests": {
+            "prototype": "montage/ui/select.reel",
+            "properties": {
+                "element": {"#": "requests"},
+                "value" : "6"
+            }
+        },
+        "enableReflection": {
+            "prototype": "montage/ui/input-checkbox.reel",
+            "properties": {
+                "checked": true,
+                "element": {"#": "enableReflection"}
+            }
+        },
+        "showBBOX": {
+            "prototype": "montage/ui/input-checkbox.reel",
+            "properties": {
+                "checked": false,
+                "element": {"#": "showBBOX"}
+            }
+        },
+
+        "modelController": {
+        "prototype": "montage/ui/controller/array-controller",
+        "properties": {
+            "selectObjectsOnAddition": true,
+            "automaticallyOrganizeObjects": true,
+            "content": []
+            }
+        },
+        
+        "selectModel": {
+            "prototype": "montage/ui/select.reel",
+            "properties": {
+                "contentController": {"@": "modelController"},
+                "textPropertyPath": "name",
+                "valuePropertyPath": "path",
+                "element": {"#": "selectModel"}
+            }
+        },
+        "fitall": {
+            "prototype": "montage/ui/button.reel",
+            "properties": {
+                "element": {"#": "fitall"}
+            }
+        },
+		"enablePick1":  {
+			"prototype": "montage/ui/input-radio.reel",
+            "properties": {
+                "element": {"#": "enablePick1"}
+
+            }
+			,
+			"listeners": [
+				{
+					"type": "action",
+					"listener": {"@": "owner"}
+				}
+			]
+		},
+		"disablePick1":  {
+			"prototype": "montage/ui/input-radio.reel",
+            "properties": {
+                "element": {"#": "disablePick1"},
+				"checked": true
+				
+           }
+		   ,
+			"listeners": [
+				{
+					"type": "action",
+					"listener": {"@": "owner"}
+				}
+			]
+		},
+		"setdefaultproperties": {
+            "prototype": "montage/ui/button.reel",
+            "properties": {
+                "element": {"#": "setdefaultproperties"}
+            }
+        },
+		"pickType": {
+            "prototype": "montage/ui/select.reel",
+            "properties": {
+                "element": {"#": "pickType"},
+                "value" : "2"
+            }
+        },
+		"turn": {
+            "prototype": "montage/ui/input-checkbox.reel",
+            "properties": {
+				"checked": true,
+                "element": {"#": "turn"}
+            }
+		}
+    }
+    </script>	
+	<script>
+		var settings_visible = false;
+		function setting_onclick()
+		{
+			var elemen =  document.getElementById("colorPallete");
+			if(settings_visible ==  false)
+				elemen.style.display="block";
+			else
+				elemen.style.display="none";
+			settings_visible  = !settings_visible;
+		}
+	</script>
+</head>
+<body>
+	<div style="display:block;margin-right: 5000px;" data-montage-id="options" class="options" >
+				
+		<div id='colorPallete' style="display:none;z-index:1;position:absolute;top:5px;right:1px;width:277px;background-color: rgb(200, 200, 200);opacity:0.6;" >
+			<section style="display:block" >
+			   <center>
+				<h1 class="title">Virtual Showroom</h1>
+				</center>
+			</section>
+			<section style="display:none" class="optionsGroup">
+				<h3></h3>
+				<div type="progress" data-montage-id="progress" class="progress"></div>
+			</section>
+			
+			<section style="display:none" class="optionsGroup speed">
+				<h3>Progressive Loading</h3>
+				<input type="range" data-montage-id="range" class="range" min="0" max="1000" value="500">
+				<input type="number" data-montage-id="number" class="number"> <label>kb</label>
+				<button data-montage-id="restart" class="button">Restart</button>
+			</section>
+			
+			<section style="display:none" class="optionsGroup">
+				<h3>Concurrent Requests</h3>
+				<select type="select" data-montage-id="requests">
+					<option value="1">1</option>
+					<option value="2">2</option>
+					<option value="3">3</option>
+					<option selected="true" value="4">4</option>
+					<option value="5">5</option>
+					<option value="6">6</option>
+				</select>
+			</section>
+			<section class="optionsGroup">
+				<h3>Rendering options</h3>
+				<label><input type="checkbox" data-montage-id="enableReflection" class="checkbox">Floor</label>
+				<label style="display:none" ><input type="checkbox" data-montage-id="showBBOX" class="checkbox" >Bounding Box</label>
+				<label><input type="checkbox" data-montage-id="turn" class="checkbox "> Turn </label>
+			</section>
+			
+			<section style="display:none" class="optionsGroup">
+				<h3>Model</h3>
+				<select type="select" data-montage-id="selectModel">
+				</select>
+			</section>
+			<section class="optionsGroup">
+				<button data-montage-id="fitall" class="button">Home</button>
+				<button style="display:none" data-montage-id="setdefaultproperties" class="button">Default</button>				
+			</section>
+			<section style="display:none" class="optionsGroup" style="padding:15px;"> 
+					<label>Pick</label>
+					<label><input type="radio" data-montage-id="enablePick1" name="radiogroup" class="Inputradio montage-InputRadio"> On </label>
+					<label><input type="radio" data-montage-id="disablePick1" name="radiogroup" class="Inputradio montage-InputRadio"> Off </label>
+			</section>
+			<section style="display:none" class="optionsGroup">
+				<h3>Pick call back type</h3>
+				<select type="select" data-montage-id="pickType">
+					<option value="1">Hidden</option>
+					<option selected="true" value="2">Color change</option>				
+				</select>
+			</section>
+			
+        </div>	
+		
+		<div id='controlColorPalleteVisibility' style="display:block;">
+			<header style="position: absolute;z-index: 1;top:5px;right: 5px;">
+			<a href="#"><image src="images/setting_icon.png" onclick="setting_onclick();"/> </a>
+			</header>
+		</div>
+	</div>
+</body>
+</html>
